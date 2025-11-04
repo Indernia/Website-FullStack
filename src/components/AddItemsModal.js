@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import "./AddItemsModal.css";
-import { BASE_URL } from "../config";
 
 const AddItemModal = ({ isOpen, onClose, onSave, existingItem }) => {
   const [name, setName] = useState("");

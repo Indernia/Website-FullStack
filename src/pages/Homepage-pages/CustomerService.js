@@ -5,10 +5,6 @@ import './CustomerService.css';
 const CustomerService = () => {
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate(-1);
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Your message has been sent!");

@@ -5,10 +5,6 @@ import './AboutUs.css';
 const AboutUs = () => {
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate(-1); // Go back to the previous page
-  };
-
   return (
     <div className="about-container">
       <div className="back-arrow" onClick={() => navigate(-1)}>&#8592;</div>

@@ -16,7 +16,7 @@
       const fileInputRef = useRef(null);
       const [allTags, setAllTags] = useState([]);
 
-      const fetchItems = async () => {
+      const fetchItems = React.useCallback( async () => {
         if (!section) return;
 
         try {
@@ -27,11 +27,11 @@
           console.error(err);
           alert("Failed to load items.");
         }
-      };
+      }, [section]);
 
       useEffect(() => {
         fetchItems();
-      }, [section]);
+      }, [fetchItems]);
 
       useEffect(() => {
       const fetchTags = async () => {
@@ -155,15 +155,10 @@
             body: JSON.stringify(payload),
           });
 
-          const contentType = res.headers.get("content-type");
           if (!res.ok) {
             const errorText = await res.text();
             throw new Error(`Save failed: ${res.status} - ${errorText}`);
           }
-
-          const updatedItem = contentType?.includes("application/json")
-            ? await res.json()
-            : null;
 
           await fetchItems(); // refresh list
           setModalOpen(false);

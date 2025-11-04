@@ -10,8 +10,8 @@ const Menupage = () => {
   const restaurant = location.state?.restaurant; 
 
   const [menuItems, setMenuItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [, setLoading] = useState(true);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     if (!restaurant) {

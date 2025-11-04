@@ -29,7 +29,6 @@ function PostTest() {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json();
       setMessage("✅ User added successfully!");
       setUser({ name: "", email: "" }); // Reset form
     } catch (error) {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Settingspage from "../pages/Settingspage";
 
 const RestaurantEditor = ({ restaurant, onSave }) => {
   const [isEditing, setIsEditing] = useState(false);
