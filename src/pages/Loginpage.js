@@ -14,7 +14,7 @@ const LoginPage = () => {
     const password = event.target.password.value;
   
     try {
-        const response = await fetch(`${BASE_URL}/api/adminUsers/login`, {
+        const response = await fetch(`${BASE_URL}/adminUsers/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

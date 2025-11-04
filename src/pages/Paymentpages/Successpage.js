@@ -15,7 +15,7 @@ const PaymentSuccess = () => {
     const maxRetries = 20;
     const verifyPayment = async () => {
       try {
-        const res = await fetch(`${BASE_URL}/api/orders/paymentStatus`, {
+        const res = await fetch(`${BASE_URL}/orders/paymentStatus`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ "sessionID": sessionId })

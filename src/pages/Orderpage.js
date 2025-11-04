@@ -17,7 +17,7 @@ const Orderpage = () => {
       }
 
       try {
-        const response = await fetch(`${BASE_URL}/api/orders/byrestaurant`, {
+        const response = await fetch(`${BASE_URL}/orders/byrestaurant`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const Orderpage = () => {
         const accessToken = localStorage.getItem("apiKey");
 
     try {
-      const response = await fetch(`${BASE_URL}/api/orders/markComplete/${orderId}/`, {
+      const response = await fetch(`${BASE_URL}/orders/markComplete/${orderId}/`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

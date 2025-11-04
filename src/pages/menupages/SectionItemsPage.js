@@ -1,4 +1,4 @@
-    import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
     import { useLocation, useNavigate } from "react-router-dom";
     import AddItemsModal from "../../components/AddItemsModal";
     import "./SectionItemsPage.css";
@@ -20,7 +20,7 @@
         if (!section) return;
 
         try {
-          const res = await fetch(`${BASE_URL}/api/menuItems/section/${section.id}`);
+          const res = await fetch(`${BASE_URL}/menuItems/section/${section.id}`);
           const data = await res.json();
           setItems(data);
         } catch (err) {
@@ -36,7 +36,7 @@
       useEffect(() => {
       const fetchTags = async () => {
       try {
-      const res = await fetch(`${BASE_URL}/api/tags/`);
+      const res = await fetch(`${BASE_URL}/tags/`);
       if (!res.ok) throw new Error("Kan’t fetch tags");
       const data = await res.json();
       console.log("🔖 Tags fetched:", data);
@@ -51,7 +51,7 @@
  const addTagToItem = async (menuItemID, tagID) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const res = await fetch(`${BASE_URL}/api/tags/addTagToItem/`, {
+      const res = await fetch(`${BASE_URL}/tags/addTagToItem/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +73,7 @@
   const removeTagFromItem = async (menuItemID, tagID) => {
     try {
       const token = localStorage.getItem("accessToken");
-      const res = await fetch(`${BASE_URL}/api/tags/removeTagFromItem/`, {
+      const res = await fetch(`${BASE_URL}/tags/removeTagFromItem/`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@
         if (!window.confirm("Delete this item?")) return;
         try {
           const token = localStorage.getItem("accessToken");
-          const res = await fetch(`${BASE_URL}/api/menuItems/${id}`, {
+          const res = await fetch(`${BASE_URL}/menuItems/${id}`, {
             method: "DELETE",
             headers: {
               "Authorization": `Bearer ${token}`
@@ -142,8 +142,8 @@
 
         const isEdit = !!item.id;
         const url = isEdit
-          ? `${BASE_URL}/api/menuItems/${item.id}/update`
-          : `${BASE_URL}/api/menuItems/add`;
+          ? `${BASE_URL}/menuItems/${item.id}/update`
+          : `${BASE_URL}/menuItems/add`;
 
         try {
           const res = await fetch(url, {
@@ -174,7 +174,7 @@
 
         try {
           const accessToken = localStorage.getItem("accessToken");
-          const res = await fetch(`${BASE_URL}/api/SASURL`, {
+          const res = await fetch(`${BASE_URL}/SASURL`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -13,7 +13,7 @@ const SettingsPage = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/restaurants`)
+    fetch(`${BASE_URL}/restaurants`)
       .then(response => response.json())
       .then(data => setRestaurants(data))
       .catch(err => console.error("Error fetching restaurants:", err));
@@ -39,7 +39,7 @@ const SettingsPage = () => {
         return;
       }
 
-      const response = await fetch(`${BASE_URL}/api/apiKeys/create`, {
+      const response = await fetch(`${BASE_URL}/apiKeys/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +101,7 @@ const SettingsPage = () => {
           onSave={async (updatedData) => {
             const accessToken = localStorage.getItem("accessToken");
             console.log("Sending data:", updatedData);
-            const response = await fetch(`${BASE_URL}/api/${selectedRestaurantId}/update`, {
+            const response = await fetch(`${BASE_URL}/${selectedRestaurantId}/update`, {
               method: "PUT",
               headers: {
                 "Content-Type": "application/json",

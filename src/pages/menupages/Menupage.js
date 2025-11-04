@@ -22,7 +22,7 @@ const Menupage = () => {
 
     console.log(`Fetching menus for ${restaurant.name}`);
 
-    fetch(`${BASE_URL}/api/menus/restaurant/${restaurant.id}`)
+    fetch(`${BASE_URL}/menus/restaurant/${restaurant.id}`)
       .then((response) => {
         console.log( response);
         if (!response.ok) {
@@ -62,7 +62,7 @@ const handleMenuClick = (menu) => {
     };
   
     try {
-      const response = await fetch(`${BASE_URL}/api/menus/add`, {
+      const response = await fetch(`${BASE_URL}/menus/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json","Authorization": `Bearer ${accessToken}`
 },
@@ -73,7 +73,7 @@ const handleMenuClick = (menu) => {
   
       const addedMenu = await response.json();
       console.log("Menu added:", addedMenu);
-      fetch(`${BASE_URL}/api/menus/restaurant/${restaurant.id}`)
+      fetch(`${BASE_URL}/menus/restaurant/${restaurant.id}`)
       .then(response => response.json())
       .then(updatedMenus => {
 
@@ -86,6 +86,7 @@ const handleMenuClick = (menu) => {
   };
   
 
+
   const handleRemoveItem = async (id) => {
 
   const accessToken = localStorage.getItem("accessToken");
@@ -93,7 +94,7 @@ const handleMenuClick = (menu) => {
 
     if (!window.confirm("Are you sure you want to remove this menu?")) return;
     try {
-      const response = await fetch(`${BASE_URL}/api/menus/${id}`, {
+      const response = await fetch(`${BASE_URL}/menus/${id}`, {
         method: "DELETE",
         mode: "cors",
         headers: {
@@ -108,7 +109,7 @@ const handleMenuClick = (menu) => {
       console.log(`Menu with ID ${id} deleted successfully. Fetching updated menu list...`);
   
       // Fetch updated list of menus
-      fetch(`${BASE_URL}/api/menus/restaurant/${restaurant.id}`)
+      fetch(`${BASE_URL}/menus/restaurant/${restaurant.id}`)
         .then(response => response.json())
         .then(updatedMenus => {
           console.log(updatedMenus);

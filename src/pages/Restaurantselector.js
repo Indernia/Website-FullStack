@@ -15,7 +15,7 @@ const RestaurantSelector = () => {
 
 
   useEffect(() => {
-    fetch(`${BASE_URL}/api/restaurants`)
+    fetch(`${BASE_URL}/restaurants`)
       .then(response => response.json())
       .then(data => {
         console.log("Fetched restaurants:", data);
@@ -50,7 +50,7 @@ const handleMenuClick = async (restaurant) => {
       };
     
       try {
-        const response = await fetch(`${BASE_URL}/api/restaurant/add`, {
+        const response = await fetch(`${BASE_URL}/restaurant/add`, {
           method: "POST",
           headers: { 
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const handleMenuClick = async (restaurant) => {
         const addedRestaurant = await response.json();
         console.log("Restaurant added:", addedRestaurant);
     
-        const updated = await fetch(`${BASE_URL}/api/restaurants`);
+        const updated = await fetch(`${BASE_URL}/restaurants`);
         const updatedRestaurants = await updated.json();
         setRestaurants(updatedRestaurants);
         setRestaurantModalOpen(false);
@@ -81,7 +81,7 @@ const handleMenuClick = async (restaurant) => {
 
               if (!window.confirm("Are you sure you want to remove this restaurant?")) return;
               try {
-                const response = await fetch(`${BASE_URL}/api/restaurants/${restaurantID}`, {
+                const response = await fetch(`${BASE_URL}/restaurants/${restaurantID}`, {
                   method: "DELETE",
                   mode: "cors",
                   headers: {
@@ -96,7 +96,7 @@ const handleMenuClick = async (restaurant) => {
 
                 console.log(`Restaurant with ID ${restaurantID} deleted successfully. Fetching updated restaurant list...`);
 
-                fetch(`${BASE_URL}/api/restaurants`)
+                fetch(`${BASE_URL}/restaurants`)
                   .then(response => response.json())
                   .then(updatedRestaurants => {
                     console.log(updatedRestaurants);
